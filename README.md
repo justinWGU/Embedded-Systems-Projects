@@ -1,3 +1,3 @@
 # Embedded Systems Projects
 
-## This project is a collection of small STM32 projects I've created.
+## This repo hosts a collection of small STM32 projects I've created.
