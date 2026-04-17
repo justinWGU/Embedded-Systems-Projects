@@ -12,7 +12,7 @@ int main(void) {
 	setup_pins();
 	setup_timer();
 
-	while(1) {
+	while (1) {
 		if (toggleLED) {
 			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 			toggleLED = false;
@@ -23,8 +23,8 @@ int main(void) {
 void setup_timer(void) {
 	// configure timer
 	htim2.Instance = TIM2; // physical timer addr
-	htim2.Init.Prescaler = 160 - 1; // 16 MHZ / 160 = 100,000 Hz
-	htim2.Init.Period = 100000 - 1; // 100,000 Hz / 100,000 = 1 Hz (1 second)
+	htim2.Init.Prescaler = 160 - 1; // 16 MHZ / 160 = 100,000 Hz (1 MHz)
+	htim2.Init.Period = 100000 - 1; // 1 MHz / 100,000 = 1 Hz (1 second)
 
 	__HAL_RCC_TIM2_CLK_ENABLE(); // enable peripheral clock on APB1 bus (16 MHz)
 	HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
@@ -35,7 +35,7 @@ void setup_timer(void) {
 
 void setup_pins(void) {
 	__HAL_RCC_GPIOA_CLK_ENABLE();
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
 	GPIO_InitStruct.Pin = GPIO_PIN_5;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
